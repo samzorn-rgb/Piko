@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarTech CRM</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">☀</span>
+      <div>
+        <div class="brand-name">SolarTech Industries</div>
+        <div class="brand-sub">Team CRM</div>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="pipeline">Pipeline</button>
+      <button class="tab" data-tab="contacts">Contacts</button>
+      <button class="tab" data-tab="audit">New Audit</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PIPELINE -->
+    <section class="view active" id="view-pipeline">
+      <div class="view-head">
+        <h1>Sales Pipeline</h1>
+        <button class="btn-ghost" id="refreshPipeline">Refresh</button>
+      </div>
+      <div class="board" id="board">
+        <div class="board-empty" id="boardEmpty">Loading pipeline…</div>
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section class="view" id="view-contacts">
+      <div class="view-head">
+        <h1>Contacts</h1>
+        <button class="btn-primary" id="addContactBtn">+ Add contact</button>
+      </div>
+      <div class="search-row">
+        <input id="contactSearch" type="text" placeholder="Search contacts by name or email…">
+      </div>
+      <div class="contact-list" id="contactList">
+        <div class="board-empty">Loading contacts…</div>
+      </div>
+    </section>
+
+    <!-- NEW AUDIT -->
+    <section class="view" id="view-audit">
+      <div class="view-head">
+        <h1>New Site Audit</h1>
+      </div>
+
+      <div class="card">
+        <div class="grid-2">
+          <div class="field"><label>Homeowner Name</label><input id="a_homeowner" placeholder="Jane Doe"></div>
+          <div class="field"><label>Rep Name</label><input id="a_rep" placeholder="Your name"></div>
+          <div class="field"><label>Homeowner Email</label><input id="a_email" type="email" placeholder="jane@example.com"></div>
+          <div class="field"><label>Homeowner Phone</label><input id="a_phone" type="tel" placeholder="(555) 123-4567"></div>
+          <div class="field"><label>Date</label><input id="a_date" type="date"></div>
+          <div class="field full"><label>Property Address</label><input id="a_address" placeholder="123 Sunrise Ave, Phoenix AZ"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="num">1</span>Electrical &amp; Equipment Photos</div>
+        <div id="photoItems"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="num">2</span>System &amp; Installer Information</div>
+        <div class="item">
+          <label class="check-row"><input type="checkbox" id="a_installerChecked"><span>Identify installing company</span></label>
+          <input class="writein" id="a_installerName" placeholder="Installing company name">
+        </div>
+        <div class="item">
+          <label class="check-row"><input type="checkbox" id="a_monitoringChecked"><span>Does the system currently have active monitoring?</span></label>
+          <div class="choice-group" id="monitoringChoices">
+            <div class="chip" data-val="yes">Yes — active</div>
+            <div class="chip" data-val="no">No</div>
+            <div class="chip" data-val="unsure">Unsure</div>
+          </div>
+          <input class="writein" id="a_monitoringPlatform" placeholder="Monitoring platform (if known)">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="num">3</span>Rep Notes</div>
+        <textarea id="a_notes" placeholder="Additional observations, access issues, homeowner questions..."></textarea>
+      </div>
+
+      <button class="btn-primary btn-block" id="submitAudit">Save &amp; Sync to HubSpot</button>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Add contact modal -->
+  <div class="modal-overlay" id="contactModalOverlay">
+    <div class="modal">
+      <h3>Add Contact</h3>
+      <div class="field"><label>First Name</label><input id="nc_first"></div>
+      <div class="field"><label>Last Name</label><input id="nc_last"></div>
+      <div class="field"><label>Email</label><input id="nc_email" type="email"></div>
+      <div class="field"><label>Phone</label><input id="nc_phone" type="tel"></div>
+      <div class="modal-actions">
+        <button class="btn-ghost" id="cancelContact">Cancel</button>
+        <button class="btn-primary" id="saveContact">Save Contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deal detail modal -->
+  <div class="modal-overlay" id="dealModalOverlay">
+    <div class="modal" id="dealModal"></div>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
